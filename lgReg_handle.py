@@ -36,6 +36,12 @@ def kFold(XMatrix,y,k_parameter):#div data to test and train by k fold
         return (X_train_matrix,X_test_matrix,y_train_matrix,y_test_matrix)
 #------------------------------------------------------------------------
 
-def lgReg_iter(X_train_matrix,y_test_matrix,index,lamda):
+# def lgReg_iter(X_train_matrix,y_train_matrix,index,c_parameter):
+#     logreg = LogisticRegression(C=c_parameter, solver='lbfgs').fit(X_train_matrix[index], y_train_matrix[index])
+# ------------------------------------------------------------------------
+
+def lgReg(X_train_matrix, y_train_matrix, k_parameter, lamda):
     c_parameter = 1 / lamda
-    logreg = LogisticRegression(C=c_parameter, solver='lbfgs').fit(X_train_matrix[index], y_test_matrix[index])
+    for i in range(k_parameter):
+        #lgReg_iter(X_train_matrix, y_train_matrix, index=i, c_parameter=c_parameter)
+        logreg = LogisticRegression(C=c_parameter, solver='lbfgs').fit(X_train_matrix[i], y_train_matrix[i])
