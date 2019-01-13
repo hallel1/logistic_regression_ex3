@@ -197,10 +197,11 @@ def split_col_data(col_name,df2):
              for i in range(length):
                  if col[i] == 'Yes':
                      df2['AHD'].at[i] = 1
-                     col[i] = yes
+                  #   col[i] = yes
                  elif col[i] == 'No':
                      df2['AHD'].at[i] = 0
-                     col[i] = no
+                  #   col[i] = no
+
 # -------------------------------
 
 
