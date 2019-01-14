@@ -1,7 +1,7 @@
 from sklearn.model_selection import KFold
 from sklearn.linear_model import LogisticRegression
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 def divDataByKFold(XMatrix,y,k_parameter):#div data to test and train by k fold
 
@@ -24,7 +24,6 @@ def divDataByKFold(XMatrix,y,k_parameter):#div data to test and train by k fold
             indexTrain = train_index[i]
             X_train.append(XMatrix[indexTrain])
             y_train.append(y[indexTrain])
-            print('')
 
         for j in range(test_index.__len__()):
             indexTest = test_index[j]
@@ -47,20 +46,35 @@ def divDataByKFold(XMatrix,y,k_parameter):#div data to test and train by k fold
 
     return (X_train_matrix,X_test_matrix,y_train_matrix,y_test_matrix)
 #------------------------------------------------------------------------
-def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix, k_parameter=10):
+def average(vec):#average of vector
+    sum = 0
+    length=len(vec)
+    for i in range(length):
+        sum += vec[i]
+    average = sum / length
+    return average
+
+def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix,y_test_matrix, k_parameter=10):
     C_param_range = [1000,100,10,1,0.1,0.01]
     avg=[]
+    testErr = [0.0] * k_parameter
     for c in C_param_range:
         err=[]
         for i in range(k_parameter):
             #print('i ',i,' c ',c)
 
             logreg = LogisticRegression(C=c, solver='lbfgs', penalty='l2').fit(X_train_matrix[i],y_train_matrix[i])
-            err.append(logreg.predict_proba(X_test_matrix[i]))
-        print('err ',err)
-        print('sum(err) ', sum(err),' len(err) ', len(err))
-        avg.append(sum(err)/len(err))
-    print('avg ',avg)
+            #errI=logreg.predict_proba(X_test_matrix[i])
+            errI=logreg.predict(X_test_matrix[i])
+            #err.append(logreg.predict_proba(X_test_matrix[i]))
+            print('err ',errI)
+            print("yts",y_test_matrix[i])
+            testErr[i]= float(sum(errI != y_test_matrix[i])) / len(y_test_matrix[i])
+           # print("sum error", float(sum(errI != y_test_matrix[i])),'len ',len(y_test_matrix[i]))
+            print("test Err=", testErr[i])
+        #averageErr=average(err)
+        #avg.append(averageErr)
+    #print('avg ',avg)
     #we want the c that give min avg
     #for i in range(len(avg)):
 
