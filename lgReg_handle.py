@@ -55,28 +55,51 @@ def average(vec):#average of vector
     return average
 
 def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix,y_test_matrix, k_parameter=10):
-    C_param_range = [1000,100,10,1,0.1,0.01]
+    C_param_range = [1000,500,200,100,10,1,0.1,0.01,0.001,0.0001]
     avg=[]
     testErr = [0.0] * k_parameter
+    trainErr= [0.0] * k_parameter
     for c in C_param_range:
-        err=[]
         for i in range(k_parameter):
             #print('i ',i,' c ',c)
 
             logreg = LogisticRegression(C=c, solver='lbfgs', penalty='l2').fit(X_train_matrix[i],y_train_matrix[i])
             #errI=logreg.predict_proba(X_test_matrix[i])
             errI=logreg.predict(X_test_matrix[i])
+            predict_train=logreg.predict(X_train_matrix[i])
             #err.append(logreg.predict_proba(X_test_matrix[i]))
             print('err ',errI)
             print("yts",y_test_matrix[i])
             testErr[i]= float(sum(errI != y_test_matrix[i])) / len(y_test_matrix[i])
+            trainErr[i] = float(sum(predict_train != y_train_matrix[i])) / len(y_train_matrix[i])
            # print("sum error", float(sum(errI != y_test_matrix[i])),'len ',len(y_test_matrix[i]))
-            print("test Err=", testErr[i])
+            print("test Err",i,"=", testErr[i])
+    print(testErr)
+    print(trainErr)
+    print("summary:")
+    print("average train err =", np.mean(trainErr) * 100, "%")
+    print("average test err =", np.mean(testErr) * 100, "%")
+
+    draw_graph(testErr,trainErr, C_param_range)
+
         #averageErr=average(err)
         #avg.append(averageErr)
     #print('avg ',avg)
     #we want the c that give min avg
     #for i in range(len(avg)):
+
+# ------------------------------------------------------------------------
+def draw_graph(v_testErr,v_trainErr,v_C):
+    plt.title(" error for given lambdas" )
+    plt.plot(v_C,v_testErr,label='test error')
+    plt.plot(v_C, v_trainErr, label='train error')
+    plt.xlabel('lambdas')
+    plt.ylabel('erors')
+    # plt.text()
+
+    plt.legend()
+    plt.show()
+
 
 
 # def lgReg_iter(X_train_matrix,y_train_matrix,index,c_parameter):

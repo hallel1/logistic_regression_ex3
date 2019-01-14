@@ -18,7 +18,7 @@ if __name__ == "__main__":
     csv_org.insert_col_df(df)
     csv_org.normalizationAll(df)
 
-    print(df)
+    # print(df)
 
     XMatrix = csv_org.x_matrix(df)
     y = csv_org.y_vector(df)
