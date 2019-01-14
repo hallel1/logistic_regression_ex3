@@ -53,7 +53,6 @@ def lgReg(X_train_matrix, y_train_matrix,X_test_matrix ,k_parameter, lamda):
     lamda=0.0001
     c_parameter = 1 / lamda
 
-    #C_param_range = [0.001, 0.01, 0.1, 1, 10, 100]
 
    # sepal_acc_table = pd.DataFrame(columns=['C_parameter', 'Accuracy'])
    # sepal_acc_table['C_parameter'] = C_param_range
