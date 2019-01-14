@@ -44,7 +44,8 @@ def lgReg(X_train_matrix, y_train_matrix, k_parameter, lamda):
     c_parameter = 1 / lamda
     for i in range(k_parameter):
         #lgReg_iter(X_train_matrix, y_train_matrix, index=i, c_parameter=c_parameter)
-        logreg = LogisticRegression(C=c_parameter, solver='lbfgs').fit(X_train_matrix[i], y_train_matrix[i])
+        logreg = LogisticRegression(C=c_parameter, solver='lbfgs', penalty='l2')#the penalty parameter - for the norm 2
+        logreg.fit(X_train_matrix[i], y_train_matrix[i])
 
 #------------------------------------------------------------------------
 #def optimalLamba(X_train_matrix, y_train_matrix, k_parameter, lamdaInitial):
