@@ -5,19 +5,12 @@ import pandas as pd
 from pandas import DataFrame
 
 
-#------------------
-typical=[1,0,0,0]
-asymptomatic=[0,1,0,0]
-nonanginal= [0,0,1,0]
-nontypical=[0,0,0,1]
+
 #----
 yes=1
 no=0
 #----
-fixed=[1,0,0,0]
-NA= [0,1,0,0]
-normal=[0,0,1,0]
-reversable=[0,0,0,1]
+
 
 #--------------------Methods-----------------------------
 #A method that inserts columns into a table (for splitting the columns containing string categories)
