@@ -3,6 +3,7 @@ import random
 import numpy
 import LogisticRegression as LR
 from sklearn.linear_model import LogisticRegression
+
 #import data
 data = numpy.genfromtxt('input.csv', delimiter=',')
 # response is in the first column
@@ -44,8 +45,9 @@ for i in range(0, nfold):
     # set parameter
     alpha = 0.05
     lam = 0.1
-    model = LR.LogisticRegression(trainX, trainY, alpha, lam)
-    model.run(400, printIter=False)
+    #model = LR.LogisticRegression(trainX, trainY, alpha, lam)
+    model = LogisticRegression(C=lam ,solver='lbfgs').fit(trainX, trainY)
+    #model.run(400, printIter=False)
 
     trainPred = model.predict(trainX)
     trainErr[i] = float(sum(trainPred != trainY)) / len(trainY)

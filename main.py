@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     lamda=10
     c_parameter=1/lamda
-    logreg = LogisticRegression(C=c_parameter ,solver='lbfgs').fit(X_train, y_train)
+    logreg = LogisticRegression(C=c_parameter ,solver='lbfgs',penalty ='L2').fit(X_train, y_train)
     print(logreg)
 
     print(X_test)

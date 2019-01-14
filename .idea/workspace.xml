@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c25a658-c115-4895-bb7b-b256bf60082e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Draft/option1/LogisticRegressionTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Draft/option1/LogisticRegressionTest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lgReg_handle.py" beforeDir="false" afterPath="$PROJECT_DIR$/lgReg_handle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -16,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lgReg_handle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-292">
-              <caret line="16" column="30" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+            <state relative-caret-position="102">
+              <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -26,10 +27,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Draft/option1/LogisticRegressionTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="64" column="6" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Draft/option1/LogisticRegression.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-969">
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="39" column="15" lean-forward="true" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
+            <state relative-caret-position="96">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -101,6 +125,9 @@
       <find>6162</find>
       <find>94872</find>
       <find>yes</find>
+      <find>LR</find>
+      <find>LogisticRegression</find>
+      <find>array</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -115,6 +142,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/csv_handle.py" />
+        <option value="$PROJECT_DIR$/Draft/option1/LogisticRegressionTest.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/lgReg_handle.py" />
       </list>
@@ -139,6 +167,17 @@
               <item name="logistic_regression_ex3" type="b2602c69:ProjectViewProjectNode" />
               <item name="logistic_regression_ex3" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="logistic_regression_ex3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="logistic_regression_ex3" type="462c0819:PsiDirectoryNode" />
+              <item name="Draft" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="logistic_regression_ex3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="logistic_regression_ex3" type="462c0819:PsiDirectoryNode" />
+              <item name="Draft" type="462c0819:PsiDirectoryNode" />
+              <item name="option1" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -161,7 +200,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="LogisticRegressionTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="logistic_regression_ex3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Draft/option1" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Draft/option1/LogisticRegressionTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="logistic_regression_ex3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -186,6 +246,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.LogisticRegressionTest" />
       </list>
     </recent_temporary>
   </component>
@@ -211,7 +272,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49959514" visible="true" weight="0.23251748" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49959514" visible="true" weight="0.33041957" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -319,16 +380,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="39" column="15" lean-forward="true" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Building_Logistic_Regression/ex2_logistic_regression/logistic_regression.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
@@ -339,10 +390,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Draft/option1/LogisticRegressionTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="64" column="6" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Draft/option1/LogisticRegression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-969">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lgReg_handle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-292">
-          <caret line="16" column="30" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+        <state relative-caret-position="102">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
