@@ -50,7 +50,10 @@ def lgReg(X_train_matrix, y_train_matrix,X_test_matrix ,k_parameter, lamda):
         logreg = LogisticRegression(C=c_parameter, solver='lbfgs', penalty='l2')#the penalty parameter - for the norm 2
         logreg.fit(X_train_matrix[i], y_train_matrix[i])
     '''
-    C_param_range = [0.001, 0.01, 0.1, 1, 10, 100]
+    lamda=0.0001
+    c_parameter = 1 / lamda
+
+    #C_param_range = [0.001, 0.01, 0.1, 1, 10, 100]
 
    # sepal_acc_table = pd.DataFrame(columns=['C_parameter', 'Accuracy'])
    # sepal_acc_table['C_parameter'] = C_param_range
@@ -58,9 +61,9 @@ def lgReg(X_train_matrix, y_train_matrix,X_test_matrix ,k_parameter, lamda):
 
     indexTrain=0
     j = 0
-    for i in C_param_range:
+    while c_parameter>100: #change
         # Apply logistic regression model to training data
-        logreg = LogisticRegression(penalty='l2', C=i, random_state=0,solver='lbfgs')
+        logreg = LogisticRegression(penalty='l2', C=c_parameter, random_state=0,solver='lbfgs')
         logreg.fit(X_train_matrix[indexTrain], y_train_matrix[indexTrain])
 
         # Predict using model
@@ -73,12 +76,16 @@ def lgReg(X_train_matrix, y_train_matrix,X_test_matrix ,k_parameter, lamda):
         # Printing decision regions
         plt.subplot(3, 2, j)
         plt.subplots_adjust(hspace=0.4)
+
         '''plot_decision_regions(X=X_combined_sepal_standard
                               , y=Y_combined_sepal
                               , classifier=logreg
                               , test_idx=range(105, 150))'''
         plt.xlabel('Sepal length')
         plt.ylabel('Sepal width')
-        plt.title('C = %s' % i)
+        #plt.title('C = %s' % i)
+
+        lamda = lamda*10
+        c_parameter = 1 / lamda
 #------------------------------------------------------------------------
 #def optimalLamba(X_train_matrix, y_train_matrix, k_parameter, lamdaInitial):
