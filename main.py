@@ -37,7 +37,8 @@ if __name__ == "__main__":
     print(logreg.predict_proba(X_test))#check the result of the model about x-test
     '''
 
-    X_train_matrix, X_test_matrix, y_train_matrix, y_test_matrix= lgr.kFold(XMatrix,y,k_parameter=10)
-    v_theta = np.zeros(df.shape[1])
+    X_train_matrix, X_test_matrix, y_train_matrix, y_test_matrix= lgr.divDataByKFold(XMatrix,y,k_parameter=10)  # Define the split - into 10 folds
+    #v_theta = np.zeros(df.shape[1])
     #lgr.lgReg_iter(X_train_matrix,y_train_matrix,X_test_matrix,index=0,lamda=10)
-    lgr.lgReg(X_train_matrix, y_train_matrix, X_test_matrix, k_parameter=10, lamda=0)
+    #lgr.lgReg(X_train_matrix, y_train_matrix, X_test_matrix, k_parameter=10, lamda=0)
+    lgr.k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix, k_parameter=10)
