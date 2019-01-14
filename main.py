@@ -38,4 +38,5 @@ if __name__ == "__main__":
     '''
 
     X_train_matrix, X_test_matrix, y_train_matrix, y_test_matrix= lgr.kFold(XMatrix,y,k_parameter=10)
+    v_theta = np.zeros(df.shape[1])
     lgr.lgReg_iter(X_train_matrix,y_train_matrix,index=0,lamda=10)

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c25a658-c115-4895-bb7b-b256bf60082e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lgReg_handle.py" beforeDir="false" afterPath="$PROJECT_DIR$/lgReg_handle.py" afterDir="false" />
-    </list>
+    <list default="true" id="7c25a658-c115-4895-bb7b-b256bf60082e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lgReg_handle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="44" column="32" lean-forward="true" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+            <state relative-caret-position="213">
+              <caret line="42" column="61" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="61" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -281,8 +279,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lgReg_handle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="44" column="32" lean-forward="true" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+        <state relative-caret-position="213">
+          <caret line="42" column="61" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="61" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
