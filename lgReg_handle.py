@@ -65,7 +65,7 @@ def indexMinElement(vec):  # return the index of min element in vector
         if minVal > vec[i]:
             minVal = vec[i]
             indexMin = i
-    print('min', minVal, 'i', indexMin)
+    # print('min', minVal, 'i', indexMin)
     return indexMin
 
 
@@ -78,16 +78,22 @@ def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix, y_tes
 
     for c in C_param_range:
         for i in range(k_parameter):
-            print('i ', i, ' c ', c)
+            # print('i ', i, ' c ', c)
 
             logreg = LogisticRegression(C=c, solver='lbfgs', penalty='l2').fit(X_train_matrix[i], y_train_matrix[i])
             errI = logreg.predict(X_test_matrix[i])
-            print('err ', errI)
-            print("yts", y_test_matrix[i])
+            # print('err ', errI)
+            # print("yts", y_test_matrix[i])
             testErrOneModel[i] = float(sum(errI != y_test_matrix[i])) / len(y_test_matrix[i])
-        print('testErrOneModel', testErrOneModel)
+        #print avg error for each lambda
+        # print("lambda=",c)
+        avg_testErr=np.mean(testErrOneModel)
+        print("lambda=",c,"avg_testErr=", avg_testErr)
+        # print('testErrOneModel', testErrOneModel)
         testErrAllModels.append(np.mean(testErrOneModel))
-    print('testErrAllModels', testErrAllModels)
+
+
+    # print('testErrAllModels', testErrAllModels)
     indexBetterModel = indexMinElement(testErrAllModels)
 
     optimalLambda = C_param_range[indexBetterModel]
@@ -127,7 +133,7 @@ def draw_graph2(XMatrix,y,optimalLambda):
 
 
 
-    #plt.title(" error for given lambdas")
+    plt.title(" error on optimal lambdas")
     plt.plot(learningGroups, errAvg, label='test error')
     #plt.plot(v_C, v_trainErr, label='train error')
     plt.xlabel('number of example')
