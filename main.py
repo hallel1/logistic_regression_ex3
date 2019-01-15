@@ -41,4 +41,5 @@ if __name__ == "__main__":
     #v_theta = np.zeros(df.shape[1])
     #lgr.lgReg_iter(X_train_matrix,y_train_matrix,X_test_matrix,index=0,lamda=10)
     #lgr.lgReg(X_train_matrix, y_train_matrix, X_test_matrix, k_parameter=10, lamda=0)
-    lgr.k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix,y_test_matrix, k_parameter=10)
+    C_param_range, testErrAllModels=lgr.k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix,y_test_matrix, k_parameter=10)
+    lgr.draw_graph(C_param_range, testErrAllModels)

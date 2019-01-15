@@ -71,21 +71,17 @@ def indexMinElement(vec):  # return the index of min element in vector
 
 # -------------------------------------
 def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix, y_test_matrix, k_parameter=10):
-    # C_param_range = [np.inf,1000,500,200,100,10,1,0.1,0.01,0.001,0.0001]
+
     C_param_range = [np.inf, 1000, 100, 10, 1, 0.1, 0.01, 0.001, 0.0001]
-    avg = []
     testErrOneModel = [0.0] * k_parameter
     testErrAllModels = []
-    # trainErr= [0.0] * k_parameter
+
     for c in C_param_range:
         for i in range(k_parameter):
             print('i ', i, ' c ', c)
 
             logreg = LogisticRegression(C=c, solver='lbfgs', penalty='l2').fit(X_train_matrix[i], y_train_matrix[i])
-            # errI=logreg.predict_proba(X_test_matrix[i])
             errI = logreg.predict(X_test_matrix[i])
-            predict_train = logreg.predict(X_train_matrix[i])
-            # err.append(logreg.predict_proba(X_test_matrix[i]))
             print('err ', errI)
             print("yts", y_test_matrix[i])
             testErrOneModel[i] = float(sum(errI != y_test_matrix[i])) / len(y_test_matrix[i])
@@ -94,44 +90,22 @@ def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix, y_tes
     print('testErrAllModels', testErrAllModels)
     indexBetterModel = indexMinElement(testErrAllModels)
 
-    optimalLamda = C_param_range[indexBetterModel]
-    print('The optimal lamda', optimalLamda)
-    print('The average error of the model with this lamda is:', testErrAllModels[indexBetterModel])
-    print('The average error of the model with lamda=0 is:', testErrAllModels[0])
+    optimalLambda = C_param_range[indexBetterModel]
+    print('The optimal lambda', optimalLambda)
+    print('The average error of the model with this lambda is:', testErrAllModels[indexBetterModel])
+    print('The average error of the model with lambda=0 is:', testErrAllModels[0])
 
-    # trainErr[i] = float(sum(predict_train != y_train_matrix[i])) / len(y_train_matrix[i])
-    # print("sum error", float(sum(errI != y_test_matrix[i])),'len ',len(y_test_matrix[i]))
-    #     print("test Err",i,"=", testErr[i])
-    # print(testErr)
-    # #print(trainErr)
-    # indexBetterModel=indexMinElement(testErr)
-    # optimalLamda=C_param_range[indexBetterModel]
-    # print('optimal',optimalLamda)
-    # print('min', testErr[indexBetterModel],'i',indexBetterModel)
-
-    # print('The optimal lamda',optimalLamda)
-    # print('The average error of the model with this lamda is',testErr[indexBetterModel])
-    # errOptimalLamda = logreg.predict_proba(testErr[indexBetterModel])
-
-    #
-    # print("summary:")
-    # print("average train err =", np.mean(trainErr) * 100, "%")
-    # print("average test err =", np.mean(testErr) * 100, "%")
-
-    # draw_graph(testErr,trainErr, C_param_range)
-
-    # averageErr=average(err)
-    # avg.append(averageErr)
-    # print('avg ',avg)
-    # we want the c that give min avg
-    # for i in range(len(avg)):
+    return(C_param_range,testErrAllModels)
 
 
 # ------------------------------------------------------------------------
-def draw_graph(v_testErr, v_trainErr, v_C):
+def draw_graph(C_param_range, testErrAllModels):
+    #def draw_graph(v_testErr, v_trainErr, v_C):
+    c_len=len(C_param_range)
+    c_range=range(c_len)
     plt.title(" error for given lambdas")
-    plt.plot(v_C, v_testErr, label='test error')
-    plt.plot(v_C, v_trainErr, label='train error')
+    plt.plot(c_range, testErrAllModels, label='test error')
+    #plt.plot(v_C, v_trainErr, label='train error')
     plt.xlabel('lambdas')
     plt.ylabel('erors')
     # plt.text()
@@ -139,10 +113,3 @@ def draw_graph(v_testErr, v_trainErr, v_C):
     plt.legend()
     plt.show()
 
-# def lgReg_iter(X_train_matrix,y_train_matrix,index,c_parameter):
-#  logreg = LogisticRegression(C=c_parameter, solver='lbfgs',penalty ='L2').fit(X_train_matrix[index], y_train_matrix[index])
-# ------------------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------
-# def optimalLamba(X_train_matrix, y_train_matrix, k_parameter, lamdaInitial):
