@@ -54,14 +54,27 @@ def average(vec):#average of vector
     average = sum / length
     return average
 
+def indexMinElement(vec):#return the index of min element in vector
+    minVal = vec[0]
+    length=len(vec)
+    indexMin=0
+    for i in range(1,length):
+        if minVal> vec[i]:
+            minVal=vec[i]
+            indexMin=i
+    print('min',minVal,'i',indexMin)
+    return indexMin
+#-------------------------------------
 def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix,y_test_matrix, k_parameter=10):
-    C_param_range = [1000,500,200,100,10,1,0.1,0.01,0.001,0.0001]
+    #C_param_range = [np.inf,1000,500,200,100,10,1,0.1,0.01,0.001,0.0001]
+    C_param_range = [np.inf,1000,100,10,1,0.1,0.01,0.001,0.0001]
     avg=[]
-    testErr = [0.0] * k_parameter
-    trainErr= [0.0] * k_parameter
+    testErrOneModel = [0.0] * k_parameter
+    testErrAllModels = []
+    #trainErr= [0.0] * k_parameter
     for c in C_param_range:
         for i in range(k_parameter):
-            #print('i ',i,' c ',c)
+            print('i ',i,' c ',c)
 
             logreg = LogisticRegression(C=c, solver='lbfgs', penalty='l2').fit(X_train_matrix[i],y_train_matrix[i])
             #errI=logreg.predict_proba(X_test_matrix[i])
@@ -70,17 +83,39 @@ def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix,y_test
             #err.append(logreg.predict_proba(X_test_matrix[i]))
             print('err ',errI)
             print("yts",y_test_matrix[i])
-            testErr[i]= float(sum(errI != y_test_matrix[i])) / len(y_test_matrix[i])
-            trainErr[i] = float(sum(predict_train != y_train_matrix[i])) / len(y_train_matrix[i])
-           # print("sum error", float(sum(errI != y_test_matrix[i])),'len ',len(y_test_matrix[i]))
-            print("test Err",i,"=", testErr[i])
-    print(testErr)
-    print(trainErr)
-    print("summary:")
-    print("average train err =", np.mean(trainErr) * 100, "%")
-    print("average test err =", np.mean(testErr) * 100, "%")
+            testErrOneModel[i]= float(sum(errI != y_test_matrix[i])) / len(y_test_matrix[i])
+        print('testErrOneModel', testErrOneModel)
+        testErrAllModels.append(np.mean(testErrOneModel))
+    print('testErrAllModels',testErrAllModels)
+    indexBetterModel = indexMinElement(testErrAllModels)
 
-    draw_graph(testErr,trainErr, C_param_range)
+    optimalLamda = C_param_range[indexBetterModel]
+    print('The optimal lamda', optimalLamda)
+    print('The average error of the model with this lamda is:', testErrAllModels[indexBetterModel])
+    print('The average error of the model with lamda=0 is:', testErrAllModels[0])
+
+
+
+        #trainErr[i] = float(sum(predict_train != y_train_matrix[i])) / len(y_train_matrix[i])
+        # print("sum error", float(sum(errI != y_test_matrix[i])),'len ',len(y_test_matrix[i]))
+    #     print("test Err",i,"=", testErr[i])
+    # print(testErr)
+    # #print(trainErr)
+    # indexBetterModel=indexMinElement(testErr)
+    # optimalLamda=C_param_range[indexBetterModel]
+    # print('optimal',optimalLamda)
+    # print('min', testErr[indexBetterModel],'i',indexBetterModel)
+
+    # print('The optimal lamda',optimalLamda)
+    # print('The average error of the model with this lamda is',testErr[indexBetterModel])
+    #errOptimalLamda = logreg.predict_proba(testErr[indexBetterModel])
+
+    #
+    # print("summary:")
+    # print("average train err =", np.mean(trainErr) * 100, "%")
+    # print("average test err =", np.mean(testErr) * 100, "%")
+
+    #draw_graph(testErr,trainErr, C_param_range)
 
         #averageErr=average(err)
         #avg.append(averageErr)
