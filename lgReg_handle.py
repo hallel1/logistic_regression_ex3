@@ -55,12 +55,16 @@ def average(vec):#average of vector
     return average
 
 def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix,y_test_matrix, k_parameter=10):
-    C_param_range = [1000,500,200,100,10,1,0.1,0.01,0.001,0.0001]
+    C_param_range = [100,50,0.5,10,1,0.1,0.4,0.01,0.001,0.0001]
     avg=[]
     testErr = [0.0] * k_parameter
     trainErr= [0.0] * k_parameter
+    avg_testErr = []
+    avg_trainErr = []
     for c in C_param_range:
+
         for i in range(k_parameter):
+
             #print('i ',i,' c ',c)
 
             logreg = LogisticRegression(C=c, solver='lbfgs', penalty='l2').fit(X_train_matrix[i],y_train_matrix[i])
@@ -68,19 +72,24 @@ def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix,y_test
             errI=logreg.predict(X_test_matrix[i])
             predict_train=logreg.predict(X_train_matrix[i])
             #err.append(logreg.predict_proba(X_test_matrix[i]))
-            print('err ',errI)
-            print("yts",y_test_matrix[i])
+            # print('err ',errI)
+            # print("yts",y_test_matrix[i])
             testErr[i]= float(sum(errI != y_test_matrix[i])) / len(y_test_matrix[i])
             trainErr[i] = float(sum(predict_train != y_train_matrix[i])) / len(y_train_matrix[i])
            # print("sum error", float(sum(errI != y_test_matrix[i])),'len ',len(y_test_matrix[i]))
-            print("test Err",i,"=", testErr[i])
-    print(testErr)
-    print(trainErr)
-    print("summary:")
-    print("average train err =", np.mean(trainErr) * 100, "%")
-    print("average test err =", np.mean(testErr) * 100, "%")
+           #  print("test Err",i,"=", testErr[i])
+        print("summary:")
+        print("lamda:", c)
+        print("average train err =", np.mean(trainErr) * 100, "%")
+        print("average test err =", np.mean(testErr) * 100, "%")
+        avg_lami_testErr=np.mean(testErr) * 100
+        avg_lami_trainErr= np.mean(trainErr) * 100
+        avg_testErr.append(avg_lami_testErr)
+        avg_trainErr.append(avg_lami_trainErr)
 
-    draw_graph(testErr,trainErr, C_param_range)
+    print('avg_testErr=',avg_testErr)
+    print('avg_trainErr=',avg_trainErr)
+    draw_graph(avg_testErr,avg_trainErr, C_param_range)
 
         #averageErr=average(err)
         #avg.append(averageErr)
