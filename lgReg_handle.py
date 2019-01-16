@@ -115,7 +115,6 @@ def draw_graph(C_param_range, testErrAllModels):
     plt.xlabel('lambdas')
     plt.ylabel('erors')
     # plt.text()
-    ####
 
     plt.legend()
     plt.show()
