@@ -8,7 +8,7 @@ def divDataByKFold(XMatrix, y, k_parameter):  # div data to test and train by k 
 
     kf = KFold(n_splits=k_parameter)  # Define the split - into 10 folds
     kf.get_n_splits(XMatrix)  # returns the number of splitting iterations in the cross-validator
-    # print(kf)
+
     X_train_matrix = []
     X_test_matrix = []
     y_train_matrix = []
@@ -36,14 +36,6 @@ def divDataByKFold(XMatrix, y, k_parameter):  # div data to test and train by k 
         y_train_matrix.append(y_train)
         y_test_matrix.append(y_test)
 
-    # print(X_train_matrix)
-    # print('############')
-    # print(X_test_matrix)
-    # print('%%%%%%%%')
-    # print(y_train_matrix)
-    # print('^^^^^^^^')
-    # print(y_test_matrix)
-
     return (X_train_matrix, X_test_matrix, y_train_matrix, y_test_matrix)
 
 
@@ -65,38 +57,32 @@ def indexMinElement(vec):  # return the index of min element in vector
         if minVal > vec[i]:
             minVal = vec[i]
             indexMin = i
-    # print('min', minVal, 'i', indexMin)
+
     return indexMin
 
 
 # -------------------------------------
 def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix, y_test_matrix, k_parameter=10):
 
-    C_param_range = [np.inf, 1000, 100, 10, 1, 0.1, 0.01, 0.001, 0.0001]
+
+    C_param_range = [ np.inf,10000,1000, 100, 10, 1, 0.5,(1/3),0.1]
     testErrOneModel = [0.0] * k_parameter
     testErrAllModels = []
 
     for c in C_param_range:
         for i in range(k_parameter):
-            # print('i ', i, ' c ', c)
 
             logreg = LogisticRegression(C=c, solver='lbfgs', penalty='l2').fit(X_train_matrix[i], y_train_matrix[i])
             errI = logreg.predict(X_test_matrix[i])
-            # print('err ', errI)
-            # print("yts", y_test_matrix[i])
             testErrOneModel[i] = float(sum(errI != y_test_matrix[i])) / len(y_test_matrix[i])
-        #print avg error for each lambda
-        # print("lambda=",c)
-        avg_testErr=np.mean(testErrOneModel)
-        print("lambda=",c,"avg_testErr=", avg_testErr)
-        # print('testErrOneModel', testErrOneModel)
-        testErrAllModels.append(np.mean(testErrOneModel))
+        avgErr=np.mean(testErrOneModel)
+        print('The average error value of lambda=',1/c,'is',avgErr)
+        testErrAllModels.append(avgErr)
 
-
-    # print('testErrAllModels', testErrAllModels)
     indexBetterModel = indexMinElement(testErrAllModels)
 
     optimalLambda = C_param_range[indexBetterModel]
+    print('')
     print('The optimal lambda', 1/optimalLambda)
     print('The average error of the model with this lambda is:', testErrAllModels[indexBetterModel])
     print('The average error of the model with lambda=0 is:', testErrAllModels[0])
@@ -106,22 +92,26 @@ def k_fold_cross_validation(X_train_matrix, y_train_matrix, X_test_matrix, y_tes
 
 # ------------------------------------------------------------------------
 def draw_graph(C_param_range, testErrAllModels):
-    #def draw_graph(v_testErr, v_trainErr, v_C):
-    c_len=len(C_param_range)
-    c_range=range(c_len)
+    C_param_range=C_param_range[1:]
+    c_len = len(C_param_range)
+    lambdaArray=[]
+    for i in range(c_len):
+        lambdaArray.append(1/C_param_range[i])
+
+    testErrAllModels=testErrAllModels[1:]
+
     plt.title(" error for given lambdas")
-    plt.plot(c_range, testErrAllModels, label='test error')
-    #plt.plot(v_C, v_trainErr, label='train error')
+    plt.plot(lambdaArray, testErrAllModels, label='test error')
     plt.xlabel('lambdas')
     plt.ylabel('erors')
-    # plt.text()
 
     plt.legend()
     plt.show()
 
-def draw_graph2(XMatrix,y,optimalLambda):
+def raph_learning_groups(XMatrix,y,optimalLambda):
     learningGroups=np.array(range(10,210,10))
     errAvg = []
+    errAvgTrain=[]
     xTestMatrix=XMatrix[201:]
     yTestVec = y[201:]
     for rowTrains in learningGroups:
@@ -131,14 +121,14 @@ def draw_graph2(XMatrix,y,optimalLambda):
         errTest = logreg.predict(xTestMatrix)
         errAvg.append(float(sum(errTest != yTestVec)) / len(yTestVec))
 
+        errTrain = logreg.predict(xTrainMatrix)
+        errAvgTrain.append(float(sum(errTrain != yTraintVec)) / len(yTraintVec))
 
 
-    plt.title(" error on optimal lambdas")
     plt.plot(learningGroups, errAvg, label='test error')
-    #plt.plot(v_C, v_trainErr, label='train error')
+    plt.plot(learningGroups, errAvgTrain, label='train error')
     plt.xlabel('number of example')
-    plt.ylabel('error of learning groups')
-    # plt.text()
+    plt.ylabel('errors')
 
     plt.legend()
     plt.show()
